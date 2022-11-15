@@ -1,4 +1,4 @@
-debugger;
+
 console.log('local::::::' + localStorage.token);
 var urlBase = "https://www.apinaser.ibitsoluciones.com/public/api/"
 var myHeaders = new Headers();
@@ -18,7 +18,7 @@ var requestOptions = {
 fetch(urlBase + "isvalid", requestOptions)
     .then(resp => {
         if (resp.status != 200) {
-            //location.href = 'login.html';
+            location.href = 'login.html';
         } else {
             $('body').show()
         }
