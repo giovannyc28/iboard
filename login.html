@@ -176,7 +176,7 @@
                   </div>
                 </div>-->
                 <div class="mb-3">
-                  <button class="btn btn-primary d-grid w-100" type="submit">ingresa</button>
+                  <button id="entrar" class="btn btn-primary d-grid w-100" type="submit">ingresa</button>
                 </div>
               </form>
 
@@ -245,15 +245,15 @@
                   location.href = 'index.html';
               }
               else{
-                  $('#mensaje').show()
+                  
               }
-              $("div.spanner").removeClass("show");
-              $("div.overlay").removeClass("show");
+              //$("div.spanner").removeClass("show");
+              //$("div.overlay").removeClass("show");
 
           })
           .catch(error => {
-              $("div.spanner").removeClass("show");
-              $("div.overlay").removeClass("show");
+              //$("div.spanner").removeClass("show");
+              //$("div.overlay").removeClass("show");
               console.log(error);
 
           });
