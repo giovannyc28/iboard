@@ -1,3 +1,4 @@
+
 console.log('local::::::' + localStorage.token);
 var urlBase = "https://www.apinaser.ibitsoluciones.com/public/api/"
 var myHeaders = new Headers();
