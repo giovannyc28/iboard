@@ -220,7 +220,11 @@
 </html>
 <script>
   $(document).ready(function() {
-    var myHeaders = new Headers();
+    
+      
+  });
+
+  var myHeaders = new Headers();
     var urlBase = "https://www.apinaser.ibitsoluciones.com/public/api/"
 
     myHeaders.append("Accept", "application/json");
@@ -235,8 +239,6 @@
         body: urlencoded,
         redirect: 'follow',
     };
-      
-  });
   
   $("#entrar").on("click", function() {
   
