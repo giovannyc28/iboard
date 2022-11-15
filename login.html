@@ -218,3 +218,44 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
   </body>
 </html>
+<script>
+  $(document).ready(function() {
+      
+  });
+  
+  $("#entrar").on("click", function() {
+  
+      $("div.spanner").addClass("show");
+      $("div.overlay").addClass("show");
+      var user = $('#email').val();
+      var password = $('#password').val();
+      urlencoded.append("email", user);
+      urlencoded.append("password", password);
+
+      fetch(urlBase + "login", requestOptions)
+          .then(resp => {
+              console.log(resp.status);
+              localStorage.setItem("codeResponde", resp.status);
+              return resp.json();
+          })
+          .then(data => {
+              //console.log(data);
+              localStorage.setItem("token", data.access_token);
+              if (localStorage.codeResponde == 200){
+                  location.href = 'index.html';
+              }
+              else{
+                  $('#mensaje').show()
+              }
+              $("div.spanner").removeClass("show");
+              $("div.overlay").removeClass("show");
+
+          })
+          .catch(error => {
+              $("div.spanner").removeClass("show");
+              $("div.overlay").removeClass("show");
+              console.log(error);
+
+          });
+  });
+</script>
