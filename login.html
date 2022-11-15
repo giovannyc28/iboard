@@ -220,6 +220,20 @@
 </html>
 <script>
   $(document).ready(function() {
+    var urlBase = "https://www.apinaser.ibitsoluciones.com/public/api/"
+
+    myHeaders.append("Accept", "application/json");
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+    var urlencoded = new URLSearchParams();
+
+    var requestOptions = {
+        //mode: 'cors',
+        method: 'POST',
+        headers: myHeaders,
+        body: urlencoded,
+        redirect: 'follow',
+    };
       
   });
   
