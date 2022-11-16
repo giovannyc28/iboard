@@ -41,32 +41,38 @@ function accionLogout(accion) {
 }
 
 
+
 // nube de palabras
 anychart.onDocumentReady(function () {
 
     var data = [
-      {"x": "Mandarin chinese", "value": 1090000000, category: "Sino-Tibetan"},
-      {"x": "English", "value": 983000000, category: "Indo-European"},
-      {"x": "Hindustani", "value": 544000000, category: "Indo-European"},
-      {"x": "Spanish", "value": 527000000, category: "Indo-European"},
-      {"x": "Arabic", "value": 422000000, category: "Afro-Asiatic"},
-      {"x": "Malay", "value": 281000000, category: "Austronesian"},
-      {"x": "Russian", "value": 267000000, category: "Indo-European"},
-      {"x": "Bengali", "value": 261000000, category: "Indo-European"},
-      {"x": "Portuguese", "value": 229000000, category: "Indo-European"},
-      {"x": "French", "value": 229000000, category: "Indo-European"},
-      {"x": "Hausa", "value": 150000000, category: "Afro-Asiatic"},
-      {"x": "Punjabi", "value": 148000000, category: "Indo-European"},
-      {"x": "Japanese", "value": 129000000, category: "Japonic"},
-      {"x": "German", "value": 129000000, category: "Indo-European"},
-      {"x": "Persian", "value": 121000000, category: "Indo-European"}
+      {"x": "#ConMisHijosNoTeMetas", "value": 50, category: "Twitter"},
+      {"x": "#DesarrolloEs", "value": 49, category: "Twitter"},
+      {"x": "#100DiasDeCambio", "value": 48, category: "Twitter"},
+      {"x": "Bad Bunny", "value": 47, category: "Twitter"},
+      {"x": "Qatar", "value": 46, category: "Twitter"},
+      {"x": "OTAN", "value": 45, category: "Twitter"},
+      {"x": "#TimsTwitterListeningParty", "value": 44, category: "Twitter"},
+      {"x": "#PetroVa", "value": 43, category: "Twitter"},
+      {"x": "Rusia", "value": 42, category: "Twitter"},
+      {"x": "Duki", "value": 41, category: "Twitter"},
+      {"x": "Maluma", "value": 40, category: "Twitter"},
+      {"x": "Daniel Mendoza", "value": 39, category: "Twitter"},
+      {"x": "Moncayo", "value": 38, category: "Twitter"},
+      {"x": "Ucrania", "value": 37, category: "Twitter"},
+      {"x": "Tercera Guerra Mundial", "value": 36, category: "Twitter"},
+      {"x": "Invima", "value": 35, category: "Twitter"},
+      {"x": "Fracaso", "value": 34, category: "Twitter"},
+      {"x": "Duko", "value": 33, category: "Twitter"},
+      {"x": "Bolillo", "value": 32, category: "Twitter"},
+      {"x": "Nike", "value": 31, category: "Twitter"}
     ];
   
     // create a tag cloud chart
     var chart = anychart.tagCloud(data);
   
     // set the chart title
-    chart.title('15 most spoken languages')
+    chart.title('')
     // set array of angles, by which words will be placed
     chart.angles([0, -45, 90])
     // enable color range
@@ -81,7 +87,7 @@ anychart.onDocumentReady(function () {
   
     // add an event listener
     chart.listen("pointClick", function(e){
-      var url = "https://en.wikipedia.org/wiki/" + e.point.get("x");
+      var url = "http://twitter.com/search?q=" + e.point.get("x");
       window.open(url, "_blank");
     });
   
