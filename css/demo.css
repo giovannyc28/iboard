@@ -106,10 +106,3 @@
   margin-top: 1rem;
 }
 
-
-html, body, #container {
-  width: 100% !important;
-  height: 100% !important;
-  margin: 0;
-  padding: 0;
-}
