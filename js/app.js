@@ -7,12 +7,15 @@ myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 myHeaders.append("Authorization", "Bearer " + localStorage.token);
 console.log("--------HEADERS INIT----------------");
 
+var listaAutoresFilter;
 var listaHashtag;
+var listaAutores
 var raw = JSON.stringify({ "": "" });
 var words = [];
 var requestOptions = {
     method: 'POST',
     headers: myHeaders,
+    
     redirect: 'follow'
 };
 
@@ -46,6 +49,7 @@ function getHashtag() {
         method: 'GET',
         headers: myHeaders,
         redirect: 'follow'
+        
     };
 
     fetch(urlBase + "twitterTrends", requestOptionsTar)
@@ -56,9 +60,55 @@ function getHashtag() {
         .then(data => {
             if (localStorage.codeRespondeTwitterTrends == 200) {
                 listaHashtag = data;
+                localStorage.setItem("id_ps", listaHashtag[0].id_ps);
                 listaHashtag.forEach(function(row){
-                    words.push({text:row.name, weight:row.score})
+                    words.push({text:row.name, weight:row.score, handlers: {
+                        click: function() {
+                            showDataAuthors(row.id_ps ,row.score);
+                        },
+                        mouseover: function() {
+                            console.log(this)
+                            $(this).addClass("over");
+                            console.log('over')
+                        },
+                        mouseleave: function() {
+                            console.log(this)
+                            $(this).removeClass("over");
+                            console.log('leave')
+                        },
+                      }
+                    })
                 });
+                getAuthors()
+                $('#my_favorite_latin_words').jQCloud(words, {
+                    autoResize: true,
+                  });
+            } else
+                $('#mensaje').text('Tu nombre de usuario o contraseña no coinciden')
+
+        })
+        .catch(error => console.log('error', error));
+}
+getHashtag()
+console.log(listaHashtag)
+
+function getAuthors() {
+    //var raw = JSON.stringify({ "": "" });
+    //body: raw,
+    requestOptionsTar = {
+        method: 'POST',
+        headers: myHeaders,  
+        redirect: 'follow'
+    };
+
+    fetch(urlBase + "authors/"+localStorage.id_ps, requestOptionsTar)
+        .then(resp => {
+            localStorage.setItem("codeRespondeTwitterAuthors", resp.status);
+            return resp.json();
+        })
+        .then(data => {
+            if (localStorage.codeRespondeTwitterTrends == 200) {
+                listaAutores = data;
                 /*$.each(planesRequest, function(key, value) {
                     $('<option>').val(value.id).text(value.plan_type).appendTo('#plan');
                 });
@@ -72,8 +122,16 @@ function getHashtag() {
         })
         .catch(error => console.log('error', error));
 }
-getHashtag()
-console.log(listaHashtag)
+
+
+console.log(listaAutores)
+
+
+function showDataAuthors(id_ps, score){
+    listaAutoresFilter = listaAutores.filter(obj => {
+         return  obj.score === score && obj.id_ps === id_ps;
+      });
+}
 
 
 /*
