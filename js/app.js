@@ -82,6 +82,7 @@ function getHashtag() {
                 getAuthors()
                 $('#my_favorite_latin_words').jQCloud(words, {
                     autoResize: true,
+                    colors: ["#6d0580", "#568052", "#b45e33", "#00bca7", "#93cd5f", "#e49343", "#5388ac", "#009eb3", "#a273ae"],
                   });
             } else
                 $('#mensaje').text('Tu nombre de usuario o contraseña no coinciden')
@@ -115,6 +116,7 @@ function getAuthors() {
                 $('#plan').selectpicker('refresh');*/
                 $('#my_favorite_latin_words').jQCloud(words, {
                     autoResize: true,
+                    colors: ["#6d0580", "#568052", "#b45e33", "#00bca7", "#93cd5f", "#e49343", "#5388ac", "#009eb3", "#a273ae"],
                   });
             } else
                 $('#mensaje').text('Tu nombre de usuario o contraseña no coinciden')
@@ -133,10 +135,27 @@ function showDataAuthors(id_ps, score){
       });
       $("#autores > tbody").html("");
       listaAutoresFilter.forEach(function(author) {
-        $('#autores > tbody:last-child').append("<tr><td><ul class='list-unstyled users-list m-0 avatar-group d-flex align-items-center'><li data-bs-toggle='tooltip' data-popup='tooltip-custom' data-bs-placement='top' class='avatar avatar-xs pull-up' title='"+decodeURIComponent(author.name)+"'><img src='"+author.url_img_profile+"' alt='Avatar' class='rounded-circle' /></li><strong>"+decodeURIComponent(author.name)+"</strong>&nbsp;<small>"+decodeURIComponent(author.username)+"</small></ul></td><td class='text-center'><span class='badge bg-label-primary me-1'>"+author.followers+"</span></td><td class='text-center'><span class='badge bg-label-primary me-1'>"+author.following+"</span></td><td class='text-center'><span class='badge bg-label-primary me-1'>"+author.retweet_count+"</span></td><td class='text-center'><span class='badge bg-label-primary me-1'>"+author.favorite_count+"</span></td><td class='text-center'><span class='badge bg-label-primary me-1'>"+author.quotes+"</span></td></tr>");
+        $('#autores > tbody:last-child').append("<tr id='"+author.id_twt+"'><td><ul class='list-unstyled users-list m-0 avatar-group d-flex align-items-center'><li data-bs-toggle='tooltip' data-popup='tooltip-custom' data-bs-placement='top' class='avatar avatar-xs pull-up' title='"+decodeURIComponent(author.name)+"'><img src='"+author.url_img_profile+"' alt='Avatar' class='rounded-circle' /></li><strong>"+decodeURIComponent(author.name)+"</strong>&nbsp;<small>"+decodeURIComponent(author.username)+"</small></ul></td><td class='text-center'><span class='badge bg-label-primary me-1'>"+author.followers+"</span></td><td class='text-center'><span class='badge bg-label-primary me-1'>"+author.following+"</span></td><td class='text-center'><span class='badge bg-label-primary me-1'>"+author.retweet_count+"</span></td><td class='text-center'><span class='badge bg-label-primary me-1'>"+author.favorite_count+"</span></td><td class='text-center'><span class='badge bg-label-primary me-1'>"+author.quotes+"</span></td></tr>");
     });
+    $('#autores tr td:first-child').popover({
+        html: true,
+        placement : 'top',
+        trigger : 'hover',
+        content: function () {
+          return '<div class="popover-message">'+getTrino($(this).closest("tr").prop('id'))+'</div>';
+        }
+      });
 }
 
+function getTrino (id_twt){
+    trino = listaAutores.filter(obj => {
+        return obj.id_twt == id_twt;
+    });
+    console.log(trino[0]);
+    trino = decodeURIComponent(trino[0].text);
+    console.log(trino);
+    return trino;
+}
 
 /*
   var word_list = [
