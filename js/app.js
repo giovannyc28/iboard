@@ -82,7 +82,7 @@ function getHashtag() {
                 getAuthors()
                 $('#my_favorite_latin_words').jQCloud(words, {
                     autoResize: true,
-                    colors: ["#6d0580", "#568052", "#b45e33", "#00bca7", "#93cd5f", "#e49343", "#5388ac", "#009eb3", "#a273ae"],
+                    colors: ["#F44336", "#F96422", "#FB7418", "#FD830E", "#FF9800", "#FAB03B", "#F5C875", "#F2D492", "#F1D79B"],
                   });
             } else
                 $('#mensaje').text('Tu nombre de usuario o contraseña no coinciden')
@@ -134,8 +134,10 @@ function showDataAuthors(id_ps, score){
          return  obj.score === score && obj.id_ps === id_ps;
       });
       $("#autores > tbody").html("");
+      rowNumber = 1; 
       listaAutoresFilter.forEach(function(author) {
-        $('#autores > tbody:last-child').append("<tr id='"+author.id_twt+"'><td><ul class='list-unstyled users-list m-0 avatar-group d-flex align-items-center'><li data-bs-toggle='tooltip' data-popup='tooltip-custom' data-bs-placement='top' class='avatar avatar-xs pull-up' title='"+decodeURIComponent(author.name)+"'><img src='"+author.url_img_profile+"' alt='Avatar' class='rounded-circle' /></li><strong>"+decodeURIComponent(author.name)+"</strong>&nbsp;<small>"+decodeURIComponent(author.username)+"</small></ul></td><td class='text-center'><span class='badge bg-label-primary me-1'>"+author.followers+"</span></td><td class='text-center'><span class='badge bg-label-primary me-1'>"+author.following+"</span></td><td class='text-center'><span class='badge bg-label-primary me-1'>"+author.retweet_count+"</span></td><td class='text-center'><span class='badge bg-label-primary me-1'>"+author.favorite_count+"</span></td><td class='text-center'><span class='badge bg-label-primary me-1'>"+author.quotes+"</span></td></tr>");
+        $('#autores > tbody:last-child').append("<tr id='"+author.id_twt+"'><td scope='row'>"+rowNumber+"</td><td class='w-5'><ul class='list-unstyled users-list m-0 avatar-group d-flex align-items-center'><li data-bs-toggle='tooltip' data-popup='tooltip-custom' data-bs-placement='top' class='avatar avatar-md pull-up' title='"+decodeURIComponent(author.name)+"'><a href='https://twitter.com/jennaortega/'"+author.username+" target='_blank'><img src='"+author.url_img_profile+"' alt='Avatar' class='rounded-circle' /></li> <div class='ms-3'> <p class='fw-bold mb-1'>"+decodeURIComponent(author.name)+"</p><p class='text-muted mb-0'>"+decodeURIComponent(author.username)+"</p></div></ul></td><td  class='text-center w-5'><span class='badge bg-label-primary me-1'>"+author.followers+"</span></td><td class='text-center w-5'><span class='badge bg-label-primary me-1'>"+author.following+"</span></td><td class='text-center w-5'><span class='badge bg-label-primary me-1'>"+author.retweet_count+"</span></td><td class='text-center w-5'><span class='badge bg-label-primary me-1'>"+author.favorite_count+"</span></td><td class='text-center w-5'><span class='badge bg-label-primary me-1'>"+author.quotes+"</span></td></tr>");
+        rowNumber++; 
     });
     $('#autores tr td:first-child').popover({
         html: true,
