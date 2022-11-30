@@ -9,8 +9,8 @@ div.jqcloud a {
   text-decoration: none;
 }
 
-div.jqcloud span.w10 { font-size: calc(2.4em + 2.4vw) }
-div.jqcloud span.w9 { font-size: calc(2.2em + 2.2vw) }
+div.jqcloud span.w10 { font-size: calc(2.2em + 2.2vw) }
+div.jqcloud span.w9 { font-size: calc(2.1em + 2.1vw) }
 div.jqcloud span.w8 { font-size: calc(2.0em + 2.0vw) }
 div.jqcloud span.w7 { font-size: calc(1.8em + 1.8vw) }
 div.jqcloud span.w6 { font-size: calc(1.6em + 1.6vw) }
