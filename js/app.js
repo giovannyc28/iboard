@@ -109,6 +109,7 @@ function getAuthors() {
         })
         .then(data => {
             if (localStorage.codeRespondeTwitterTrends == 200) {
+                console.log(data)
                 listaAutores = data;
                 /*$.each(planesRequest, function(key, value) {
                     $('<option>').val(value.id).text(value.plan_type).appendTo('#plan');
@@ -147,6 +148,15 @@ function showDataAuthors(id_ps, score){
           return '<div class="popover-message">'+getTrino($(this).closest("tr").prop('id'))+'</div>';
         }
       });
+
+      $('#autores tr td:first-child +td').on("click", function() {
+        var tweet = document.getElementById('tweetWindow');
+        tweet.setAttribute('tweetID', $(this).closest("tr").prop('id'))
+        $("#tweetWindow").empty();
+        reloadTweet()
+        $('#modalCenter').modal('show');
+    });
+
 }
 
 function getTrino (id_twt){
@@ -158,6 +168,28 @@ function getTrino (id_twt){
     console.log(trino);
     return trino;
 }
+
+$('#autores tr').on("click", function() {
+    console.log('HEyyy')
+});
+
+
+function reloadTweet(){
+    var tweet = document.getElementById('tweetWindow');
+    var id = tweet.getAttribute('tweetID');
+      
+      twttr.widgets
+        .createTweet(id, tweet, {
+          conversation: 'none', // or all
+          cards: 'hidden', // or visible
+          linkColor: '#cc0000', // default is blue
+          theme: 'dark', // or dark
+        })
+        .then(function (el) {
+          //el.contentDocument.querySelector('.footer').style.display = 'none';
+        });
+    };
+
 
 /*
   var word_list = [
