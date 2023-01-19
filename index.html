@@ -40,6 +40,32 @@
   <!-- Page CSS -->
 
   <!-- Helpers -->
+  <script>
+    // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyADi02O3IFeMSohYNxYIs_w5l9sdhdzbns",
+    authDomain: "iboard-2d620.firebaseapp.com",
+    projectId: "iboard-2d620",
+    storageBucket: "iboard-2d620.appspot.com",
+    messagingSenderId: "234174765631",
+    appId: "1:234174765631:web:93c8f48fe3f379ae0cf68a",
+    measurementId: "G-LBHG3MNXRM"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+
+
+  </script>
+
   <script src="./vendor/js/helpers.js"></script>
 
   <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
@@ -325,7 +351,7 @@
                                 <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
                                   <div class="modal-content">
                                     
-                                    <div class="modal-body">
+                                      
                                       
                                         
                                           <div id="tweetWindow" tweetID="1600677933491769344"></div>
