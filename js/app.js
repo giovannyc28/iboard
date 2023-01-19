@@ -1,6 +1,6 @@
 
 console.log('local::::::' + localStorage.token);
-var urlBase = "https://www.apinaser.ibitsoluciones.com/public/api/"
+var urlBase = "https://www.backend.databoard.com.co/public/api/"
 var myHeaders = new Headers();
 myHeaders.append("Accept", "application/json");
 myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
