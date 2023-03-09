@@ -64,7 +64,7 @@ function getHashtag() {
                 listaHashtag.forEach(function(row){
                     words.push({text:decodeURIComponent(row.name), weight:row.score, handlers: {
                         click: function() {
-                            showDataAuthors(row.id_ps ,row.score);
+                            showDataAuthors(row.id_ps ,row.score, 0);
                         },
                         mouseover: function() {
                             console.log(this)
@@ -130,16 +130,29 @@ function getAuthors() {
 console.log(listaAutores)
 
 
-function showDataAuthors(id_ps, score){
+function showDataAuthors(id_ps, score, limpiar){
     listaAutoresFilter = listaAutores.filter(obj => {
          return  obj.score === score && obj.id_ps === id_ps;
-      });
-      $("#autores > tbody").html("");
+    });
+    hastagFilter = listaHashtag.filter(obj => {
+        return  obj.score === score;
+    });
+      if (limpiar == 0) {
+        $("#autores > tbody").html("");
+      } else {
+            $("#autores > thead").html("");
+            $('#autores > tbody:last-child').append('<tr><th colspan="6" scope="col">'+hastagFilter[0].name+'</th></tr>')
+            $('#autores > tbody:last-child').append('<tr><th scope="col">#</th><th scope="col">Nombre</th><th scope="col">Seguidores</th><th scope="col">Seguiendo</th><th scope="col">Cant. ReTweets</th><th scope="col">Cant. MeGusta</th><th scope="col">Cant. Citas</th></tr>')
+      }
+      
+     //hastagFilter[0].name
+
       rowNumber = 1; 
       listaAutoresFilter.forEach(function(author) {
         $('#autores > tbody:last-child').append("<tr id='"+author.id_twt+"'><td scope='row'>"+rowNumber+"</td><td class='w-5'><ul class='list-unstyled users-list m-0 avatar-group d-flex align-items-center'><li data-bs-toggle='tooltip' data-popup='tooltip-custom' data-bs-placement='top' class='avatar avatar-md pull-up' title='"+   (author.name)+"'><a href='https://twitter.com/"+author.username+"' target='_blank'><img src='data:image/jpeg;charset=utf-8;base64,"+author.img_code+"' alt='Avatar' class='rounded-circle' /></a></li> <div class='ms-3'> <p class='fw-bold mb-1'>"+ decodeURIComponent(author.name)+"</p><p class='text-muted mb-0'>"+decodeURIComponent(author.username)+"</p></div></ul></td><td  class='text-center w-5'><span class='badge bg-label-primary me-1'>"+author.followers+"</span></td><td class='text-center w-5'><span class='badge bg-label-primary me-1'>"+author.following+"</span></td><td class='text-center w-5'><span class='badge bg-label-primary me-1'>"+author.retweet_count+"</span></td><td class='text-center w-5'><span class='badge bg-label-primary me-1'>"+author.favorite_count+"</span></td><td class='text-center w-5'><span class='badge bg-label-primary me-1'>"+author.quotes+"</span></td></tr>");
         rowNumber++; 
     });
+
     $('#autores tr td:first-child').popover({
         html: true,
         placement : 'top',
@@ -169,9 +182,15 @@ function getTrino (id_twt){
     return trino;
 }
 
-$('#autores tr').on("click", function() {
-    console.log('HEyyy')
+$('#print').on("click", function() {
+    $("#autores > tbody").html("");
+    listaHashtag.forEach(function(row){
+        console.log(row.score)
+        showDataAuthors(row.id_ps ,row.score,1);
+    });
+    window.print(); 
 });
+
 
 
 function reloadTweet(){
