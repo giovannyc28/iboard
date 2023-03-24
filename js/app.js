@@ -59,8 +59,11 @@ function getHashtag() {
         })
         .then(data => {
             if (localStorage.codeRespondeTwitterTrends == 200) {
-                listaHashtag = data;
-                localStorage.setItem("id_ps", listaHashtag[0].id_ps);
+                listaHashtag = data['trends'];
+                dataProceso = data['ps'];
+                localStorage.setItem("id_ps", dataProceso['id']);
+                localStorage.setItem("fecha_ps", dataProceso['created']);
+                $('#fechaExtraccion').text(dataProceso['created'])
                 listaHashtag.forEach(function(row){
                     words.push({text:decodeURIComponent(row.name), weight:row.score, handlers: {
                         click: function() {
